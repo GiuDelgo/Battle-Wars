@@ -18,15 +18,15 @@ def detectar_colision (block_1: pygame.Rect, block_2: pygame.Rect)->bool:
     else: 
         return False
 
-def punto_in_block (punto, block)->bool:
+def punto_in_block (punto: tuple[int, int], block: pygame.Rect)->bool:
     """Recibe un punto y un rectángulo por parámetro. 
 
     Args:
-        punto (_type_):  primer rectangulo
-        block (_type_):rectangulo
+        punto (tuple): punto con coordenadas x,y
+        block (pygame.Rect):rectangulo
 
     Returns:
-        bool: devuelve True el punto coindice con el área rectángulo, sino False. 
+        bool: devuelve True si l punto coindice con el área rectángulo, sino False. 
     """
     x, y = punto
     return x >= block.left and x <= block.right and y >= block.top and y <= block.bottom

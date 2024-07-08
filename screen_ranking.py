@@ -37,8 +37,7 @@ def ranking(SCREEN: pygame.display):
 
         draw_text(SCREEN, (MID_WIDTH_SCREEN, 60), "RANKING", font_3, CUSTOM_RED,)
 
-        
-        if no_file or not scores: 
+        if no_file or len(scores) == 0: 
             draw_text(SCREEN, (MID_WIDTH_SCREEN, 200), "No hay jugadores previos", font_1, CUSTOM_RED, bg=WHITE)
         elif scores: 
             if len(scores)>3:

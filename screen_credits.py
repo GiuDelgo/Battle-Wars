@@ -14,8 +14,6 @@ def credits_play(SCREEN: pygame.display):
     Args:
         SCREEN (pygame.display): Ventana sobre la cual se renderizan los elementos de la pantalla 
     """
-    imagen_fondo = pygame.image.load("./src/assets/images/ciudad_fondo.jpg")
-    imagen_fondo = pygame.transform.scale(imagen_fondo, SIZE_SCREEN)
 
     preferencias = {}
     convert_csv(preferencias)
@@ -30,8 +28,8 @@ def credits_play(SCREEN: pygame.display):
     text_2 = font_1 .render("Executive Project Manager: Giuliana Delgobbo", True, WHITE)
     text_3 = font_1 .render("Creative Director: Giuliana Delgobbo", True, WHITE)
     text_1_rect = text_1.get_rect(center = (MID_WIDTH_SCREEN, HEIGHT + text_1.get_height()))
-    text_2_rect = text_2.get_rect(center = (MID_WIDTH_SCREEN, HEIGHT + text_2.get_height() - text_1.get_height()))
-    text_3_rect = text_3.get_rect(center = (MID_WIDTH_SCREEN, HEIGHT + text_3.get_height() - text_2.get_height() - text_1.get_height()))
+    text_2_rect = text_2.get_rect(center = (MID_WIDTH_SCREEN, HEIGHT + text_2.get_height() + text_1.get_height()))
+    text_3_rect = text_3.get_rect(center = (MID_WIDTH_SCREEN, HEIGHT + text_3.get_height() + text_2.get_height() + text_1.get_height()))
 
     text_escape = font_1.render("Presione SPACE para ir al menu principal", True, WHITE)
     text_escape_rect = text_escape.get_rect(center = (CENTER_SCREEN))

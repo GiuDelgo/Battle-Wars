@@ -45,7 +45,6 @@ def game_play(SCREEN: pygame.display):
     #Cargo Fuente
     font_1 = pygame.font.Font("./src/assets/fonts/Military Poster.ttf", preferencias ["size_font_1"])
     font_2 = pygame.font.Font("./src/assets/fonts/Military Poster.ttf", preferencias ["size_font_2"])
-    font_3 = pygame.font.Font("./src/assets/fonts/Military Poster.ttf", preferencias ["size_font_3"])
 
     #Cargo sonidos
     explosion_1_sound = pygame.mixer.Sound("./src/assets/sounds/explosion_1.mp3")
@@ -57,7 +56,6 @@ def game_play(SCREEN: pygame.display):
     power_up_sound = pygame.mixer.Sound("./src/assets/sounds/power_up.mp3")
     power_up_sound.set_volume(preferencias["volumen"])
     
-    #Configuro Bucle
     clock = pygame.time.Clock()#modulo time con funciones para manejo de tiempos
 
     #Cargo musica
@@ -200,13 +198,9 @@ def game_play(SCREEN: pygame.display):
 
         for enemy in enemys_1:
             enemy["rect"].move_ip(0,enemy["speed_y"])
-            if enemy["rect"].top > HEIGHT:
-                enemy["rect"].bottom = 0
         
         for enemy in enemys_2:
             enemy["rect"].move_ip(0,enemy["speed_y"])
-            if enemy["rect"].top > HEIGHT:
-                enemy["rect"].bottom = 0
 
         for enemy in enemys_1[:]:
             if laser:
@@ -214,7 +208,7 @@ def game_play(SCREEN: pygame.display):
                     explosion_2_sound.play()
                     enemys_1.remove(enemy)
                     laser = None
-                    score += 1
+                    score += 2
                     if len(enemys_1) == 0:
                         try: 
                             load_enemy_list(enemys_1, ENEMY_1_QUANT, enemy_1_img)

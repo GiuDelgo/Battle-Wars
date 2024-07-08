@@ -62,7 +62,7 @@ def create_enemy(imagen: pygame.Surface = None) -> dict:
     if imagen and not isinstance(imagen, pygame.Surface):
         raise ValueError("La 'imagen' debe ser una instancia de pygame.Surface o None.")
 
-    block =  create_block (imagen, randint(0+5, WIDTH-ENEMY_WIDHT-5), randint(-HEIGHT, 0 - ENEMY_HEIGHT), ENEMY_WIDHT, ENEMY_HEIGHT)
+    block =  create_block (imagen, randint(0+5, WIDTH-ENEMY_WIDHT-5), randint(-MID_HEIGHT_SCREEN, 0 - ENEMY_HEIGHT), ENEMY_WIDHT, ENEMY_HEIGHT)
     block ["speed_y"] = randint(MIN_SPEED_ENEMY_Y, MAX_SPEED_ENEMY_Y)
     return block
 

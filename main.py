@@ -1,6 +1,5 @@
 import pygame
 from settings import *
-from random import randint
 from funciones_bloques import *
 from funciones_colisiones import *
 from pygame.locals import * #importo todas los eventos de pygame 
@@ -25,7 +24,6 @@ SCREEN = pygame.display.set_mode(SIZE_SCREEN)
 #Cargo y escalo imagenes de fondo
 imagen_fondo = pygame.image.load("./src/assets/images/ciudad_fondo.jpg")
 imagen_fondo = pygame.transform.scale(imagen_fondo, SIZE_SCREEN)
-start_button_img = pygame.image.load("./src/assets/images/start.png")
 
 preferencias = {}
 convert_csv(preferencias)
@@ -34,8 +32,6 @@ convert_csv(preferencias)
 font_2 = pygame.font.Font("./src/assets/fonts/Military Poster.ttf", preferencias ["size_font_2"])
 font_3 = pygame.font.Font("./src/assets/fonts/Military Poster.ttf", preferencias ["size_font_3"])
 
-#Configuro Bucle
-clock = pygame.time.Clock()#modulo time con funciones para manejo de tiempos
 
 def main_menu():
     """Genera la pantalla principal del juego con su menu de opciones.
@@ -49,21 +45,26 @@ def main_menu():
         credits_button = font_2 .render('Credits', True, CUSTOM_BLUE, WHITE)
         ranking_button = font_2 .render('Ranking', True, CUSTOM_BLUE, WHITE)
 
-        SCREEN.blit (play_button, (MID_WIDTH_SCREEN- play_button.get_width() // 2, 250))
-        SCREEN.blit (credits_button, (MID_WIDTH_SCREEN - credits_button.get_width() // 2, 350))
-        SCREEN.blit (ranking_button, (MID_WIDTH_SCREEN - ranking_button.get_width() // 2, 450))
+        play_button_rect = play_button.get_rect(center=(MID_WIDTH_SCREEN, 250))
+        credits_button_rect = credits_button.get_rect(center=(MID_WIDTH_SCREEN, 350))
+        ranking_button_rect = ranking_button.get_rect(center=(MID_WIDTH_SCREEN, 450))
+
+        SCREEN.blit(play_button, play_button_rect)
+        SCREEN.blit(credits_button, credits_button_rect)
+        SCREEN.blit(ranking_button, ranking_button_rect)
 
         pygame.display.flip()
-
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 terminar()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if 250 < event.pos[1] < 250 + play_button.get_height():
+                x, y = event.pos
+                if punto_in_block((x,y), play_button_rect):
                     game_play(SCREEN)
-                elif 350 < event.pos[1] < 350 + credits_button.get_height():
+                elif punto_in_block((x,y), credits_button_rect):
                     credits_play(SCREEN)
-                elif 450 < event.pos[1] < 450 + ranking_button.get_height():
+                elif punto_in_block((x,y), ranking_button_rect):
                     ranking(SCREEN)
 
 if __name__ == '__main__':
